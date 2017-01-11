@@ -1,6 +1,5 @@
 // Copyright 2017 creating a template for avl tree
-// including required operations for avl tree
-// such as insert, delete, rebalence, print
+// cpp file to create an interface for avl tree
 #include <iostream>
 #include "./my_avl_tree_oop.hpp"
 

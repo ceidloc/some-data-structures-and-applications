@@ -1,8 +1,11 @@
+// Copyright 2017 creating a template for avl tree
+// including required operations for avl tree
+// such as insert, delete, rebalence, print
+// adding gaurd
 #ifndef my_avl_tree_oop
 #define my_avl_tree_oop
 // including required operations for avl tree
 // such as insert, delete, rebalence, print
-#include <iostream>
 #include <queue>
 #include <stack>
 #include <algorithm>
