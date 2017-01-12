@@ -17,16 +17,32 @@ find_unique: find_unique_from_array_procedural.cpp
 	$(CC) $(CSTD) $(CFLAGS) find_unique_from_array_procedural.cpp -o find_unique_procedural.o
 
 # alternate for q1, using avl tree header
-f_u_oop: find_unique_oop.cpp  my_avl_tree_oop.hpp
+find_unique_oop: find_unique_oop.cpp  my_avl_tree_oop.hpp
 	$(CC) $(CSTD) $(CFLAGS) find_unique_oop.cpp -o find_unique_oop.o
+
+# for datastructure question 1, unbounded queue
+qu: queue_unbounded.cpp
+	$(CC) $(CSTD) $(CFLAGS) queue_unbounded.cpp -o queue_unbounded.o
+
+cqu: circular_queue_unbounded.cpp
+	$(CC) $(CSTD) $(CFLAGS) circular_queue_unbounded.cpp -o circular_queue_unbounded.o
+
+cqb: circular_queue_bounded.cpp
+	$(CC) $(CSTD) $(CFLAGS) circular_queue_bounded.cpp -o circular_queue_bounded.o
+
+cdll: circular_doubly_linked_list.cpp
+	$(CC) $(CSTD) $(CFLAGS) circular_doubly_linked_list.cpp -o circular_doubly_linked_list.o
 
 # to delete all object/executable files and a.out
 clean:
 	rm -rf *o *exe a.out
 
-# to show o or cpp files
+# to show o, cpp or hpp files
 so:
 	ls *o
 
 sc:
 	ls *cpp
+
+sh:
+	ls *hpp
