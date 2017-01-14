@@ -81,7 +81,7 @@ class myavl {
 // to create a new node in avl
 template <class T>
 node<T>* myavl<T>::create_node(T value) {
-  // create a new node in heap, and returns its address
+  // create a new node in heap, and return its address
   node<T>* new_node = ( node<T>* )malloc(sizeof(node<T> ) );
   new_node->value = value;
   new_node->height = 1;

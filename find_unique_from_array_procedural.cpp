@@ -13,21 +13,21 @@ typedef struct binary_search_tree {
   struct binary_search_tree* parent;
   struct binary_search_tree* left_child;
   struct binary_search_tree* right_child;
-} Bst;
+} Avl;
 
 // has complexity O(n*log(n))
 void find_unique(int[], int);
 // has complexity O(log(n))
-Bst* insert_in_Bst(Bst*, Bst*, int);
+Avl* insert_in_Avl(Avl*, Avl*, int);
 // all remaing have complexity O(1)
-Bst* create_Bst_node(int);
-Bst* rebalence(Bst*, Bst*);
-Bst* rotate_left(Bst*, Bst*);
-Bst* rotate_right(Bst*, Bst*);
-int readjust_height(Bst*);
+Avl* create_Avl_node(int);
+Avl* rebalence(Avl*, Avl*);
+Avl* rotate_left(Avl*, Avl*);
+Avl* rotate_right(Avl*, Avl*);
+int readjust_height(Avl*);
 // has complexity O(n)
-void print_inorder(Bst*);
-void print_Bst(Bst*);
+void print_inorder(Avl*);
+void print_Avl(Avl*);
 
 int main() {
   // to check the standard of current c++
@@ -57,33 +57,33 @@ int main() {
 }
 
 void find_unique(int* arr, int n) {
-  // creating a Bst, that stores only unique elemets
-  // inserting the elements of the array into the Bst
+  // creating a Avl, that stores only unique elemets
+  // inserting the elements of the array into the Avl
   // each insertion cost = height of tree
   // n such insertions, where n is the size of array,
   // hence complexity is O(n*height of tree)
   // using avl trees, to maintain balance in the tree after every insertion
   // makes height of tree equal to log(nodes_in_the_tree)
-  Bst* root = create_Bst_node(arr[0]);
-  // creating a pointer in stack that will point to the root of Bst in heap
+  Avl* root = create_Avl_node(arr[0]);
+  // creating a pointer in stack that will point to the root of Avl in heap
   for (int i = 1; i < n; i++) {
-    // trying to insert every element in Bst
+    // trying to insert every element in Avl
     // if the element is unique it will be inserted
-    root = insert_in_Bst(root, root, arr[i]);
+    root = insert_in_Avl(root, root, arr[i]);
     // have to pass root twice because of recursive call inside the funtion
     // returns the value of new root after rebalancing the tree
   }
-  // the resulting Bst pointed by the root will contain only unique elements
-  print_Bst(root);
+  // the resulting Avl pointed by the root will contain only unique elements
+  print_Avl(root);
   // or we can print the inorder
   //  print_inorder(root);
 }
 
-// creating funtions for Bst
-// to create a new node in Bst
-Bst* create_Bst_node(int value) {
+// creating funtions for Avl
+// to create a new node in Avl
+Avl* create_Avl_node(int value) {
   // create a new node in heap, and returns its address
-  Bst* new_node = ( Bst* )malloc(sizeof(Bst ) );
+  Avl* new_node = ( Avl* )malloc(sizeof(Avl ) );
   new_node->value = value;
   new_node->height = 1;
   new_node->parent = NULL;
@@ -92,32 +92,32 @@ Bst* create_Bst_node(int value) {
   return new_node;
 }
 
-// scans the Bst and inserts value if it's unique
-Bst* insert_in_Bst(Bst* tracer, Bst* root, int new_value ) {
+// scans the Avl and inserts value if it's unique
+Avl* insert_in_Avl(Avl* tracer, Avl* root, int new_value ) {
   if (tracer->value > new_value) {
     // the new_value should be the left child of tracer
     if (tracer->left_child == NULL) {
       // no left child, hence creating a new left child
-      Bst* new_node = create_Bst_node(new_value);
+      Avl* new_node = create_Avl_node(new_value);
       new_node->parent = tracer;
       tracer->left_child = new_node;
     }
     else {
       // insert in the left branch of tracer
-      insert_in_Bst(tracer->left_child, root, new_value);
+      insert_in_Avl(tracer->left_child, root, new_value);
     }
   }
   else if (tracer->value < new_value) {
     // the new_value should be the right child of tracer
     if (tracer->right_child == NULL) {
       // no right child,hence creating a new right child
-      Bst* new_node = create_Bst_node(new_value);
+      Avl* new_node = create_Avl_node(new_value);
       new_node->parent = tracer;
       tracer->right_child = new_node;
     }
     else {
       // insert in the right branch of tracer
-      insert_in_Bst(tracer->right_child, root, new_value);
+      insert_in_Avl(tracer->right_child, root, new_value);
     }
   }
   else {
@@ -138,7 +138,7 @@ Bst* insert_in_Bst(Bst* tracer, Bst* root, int new_value ) {
 // readjusts height by using height of it's subtrees,
 // returns slope of the give node
 // has complexity O(1)
-int readjust_height(Bst* tracer) {
+int readjust_height(Avl* tracer) {
   int height_of_right_sub_tree = 0;
   int height_of_left_sub_tree = 0;
   if (tracer->right_child)
@@ -155,8 +155,8 @@ int readjust_height(Bst* tracer) {
 
 // rebalances the subtree of the given node
 // has complexity O(1)
-Bst* rebalence(Bst* tracer, Bst* root) {
-  Bst* child;
+Avl* rebalence(Avl* tracer, Avl* root) {
+  Avl* child;
   // to point to the child of the tracer
   int slope;
   slope = readjust_height(tracer);
@@ -195,9 +195,9 @@ Bst* rebalence(Bst* tracer, Bst* root) {
 
 // rotate right by rehooking
 // has complexity O(1)
-Bst* rotate_right(Bst* tracer, Bst* root) {
-  Bst* left_child = tracer->left_child;
-  Bst* parent = tracer->parent;
+Avl* rotate_right(Avl* tracer, Avl* root) {
+  Avl* left_child = tracer->left_child;
+  Avl* parent = tracer->parent;
   // rehooking
   tracer->left_child = left_child->right_child;
   left_child->right_child = tracer;
@@ -225,9 +225,9 @@ Bst* rotate_right(Bst* tracer, Bst* root) {
 
 // rotate left by rehooking
 // has complexity O(1)
-Bst* rotate_left(Bst* tracer, Bst* root) {
-  Bst* right_child = tracer->right_child;
-  Bst* parent = tracer->parent;
+Avl* rotate_left(Avl* tracer, Avl* root) {
+  Avl* right_child = tracer->right_child;
+  Avl* parent = tracer->parent;
   // rehooking
   tracer->right_child = right_child->left_child;
   right_child->left_child = tracer;
@@ -254,7 +254,7 @@ Bst* rotate_left(Bst* tracer, Bst* root) {
 }
 
 // prints the tree
-void print_inorder(Bst* root) {
+void print_inorder(Avl* root) {
   if (root == NULL)
     return;
   print_inorder(root->left_child);
@@ -264,12 +264,12 @@ void print_inorder(Bst* root) {
  }
 
 // prints the tree
-void print_Bst(Bst* root) {
+void print_Avl(Avl* root) {
   // has complexity O(n+m), where n is the number of nodes,
   // m is the number of edges,
   // since in bst there are n-1 edges for n number of nodes
   // complexity is O(n)
-  std::queue<Bst*> Q;
+  std::queue<Avl*> Q;
   // stores the pointer to nodes of the bst
   std::string print_level;
   // stores the node values to be printed
@@ -310,7 +310,7 @@ void print_Bst(Bst* root) {
       std::ostringstream oss;
       // for string concatination
       // removing the node from the queue
-      Bst* current_node = Q.front();
+      Avl* current_node = Q.front();
       Q.pop();  // pops and returns void
       // checking if the node is not NULL
       if (current_node != NULL) {

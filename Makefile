@@ -1,16 +1,25 @@
-# make file for all c/c++ codes
+# makefile for all c/c++ codes
 # declaring variables
 # c compiler
 CC = g++
 # flags
+# add -g to create symbol tables for .o file
 CFLAGS = -Wall -Werror -Wextra
 # standard
 CSTD = -std=c++11
 # alt -std=c++0x
 
+# to create all
+all: avl rbt find_unique find_unique_oop qu cqu cqb cdll
+	echo "all object files created!"
+
 # to create interface for avl tree header
-avl: my_avl_tree_oop.cpp my_avl_tree_oop.hpp
-	$(CC) $(CSTD) $(CFLAGS) my_avl_tree_oop.cpp -o avl_interface.o
+avl: avl_tree_oop_interface.cpp my_avl_tree_oop.hpp
+	$(CC) $(CSTD) $(CFLAGS) avl_tree_oop_interface.cpp -o avl_tree_oop_interface.o
+
+# to create interface for red black tree header
+rbt: my_red_black_tree_oop.hpp rbt_oop_interface.cpp
+	$(CC) $(CSTD) $(CFLAGS) rbt_oop_interface.cpp -o rbt_oop_interface.o
 
 # for interview question 1, finding unique using procedural
 find_unique: find_unique_from_array_procedural.cpp 
