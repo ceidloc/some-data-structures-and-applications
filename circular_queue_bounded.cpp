@@ -1,4 +1,4 @@
-// Copyright 2017 Q)Implement Circular Queue bounded
+// To Implement Circular Queue bounded
 #include <iostream>
 typedef struct queue {
   int nodes[5];

@@ -1,4 +1,4 @@
-// Copyright 2017 Q) Implement Circular Doubly Linked List
+// To implement circular doubly linked list
 #include <iostream>
 typedef struct node {
   int value;

@@ -1,4 +1,4 @@
-// Copyright 2017 Q) Create Unbounded Queue using Dynamic Memory allocation
+// To Create Unbounded Queue using Dynamic Memory allocation
 #include <iostream>
 typedef struct node {
   int value;

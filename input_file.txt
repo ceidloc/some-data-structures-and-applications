@@ -1,2 +1,1 @@
-hello noob \0
-101010
+hello  \0

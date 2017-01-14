@@ -1,4 +1,4 @@
-// Copyright 2017 1) Given an array of arbitrary size and having
+// Q) Given an array of arbitrary size and having
 // arbitrary values. Find unique values and print them.
 #include <iostream>
 #include <queue>

@@ -1,4 +1,4 @@
-// Copyright 2017 Q)Implement Circular Queue Unbounded
+// To Implement Circular Queue Unbounded
 // difference form unbounded queue is that the tail->next points
 // to head, code wise only difference in enqueue, dequeue and print
 #include <iostream>

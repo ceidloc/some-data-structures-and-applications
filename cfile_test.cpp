@@ -1,4 +1,3 @@
-// Copyright 2017
 #include <iostream>
 int main() {
   FILE *fp = NULL;

@@ -1,4 +1,4 @@
-//  Interview question 1)finding unique
+// Q) finding unique values from an array
 #include <iostream>
 #include "./my_avl_tree_oop.hpp"
 int main() {

@@ -1,4 +1,4 @@
-// Copyright 2017 creating a template for avl tree
+// Creating a template for avl tree
 // cpp file to create an interface for avl tree
 #include <iostream>
 #include "./my_avl_tree_oop.hpp"
